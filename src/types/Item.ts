@@ -11,7 +11,7 @@ export type IItem = {
   itemType: string
 }
 
-export type FilterParams = BaseFilterParams & {
+export type ItemFilterParams = BaseFilterParams & {
   tags_like?: string
   itemType?: string
   manufacturer?: string
