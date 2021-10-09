@@ -1,17 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import httpService from '../../services/http-service'
 
-import { Status } from '../types/Status'
-import { IItem, FilterParams } from '../types/Item'
+import { jsonServerUtils } from '../../helpers'
+import { IPagination, IItem, FilterParams, Status } from '../../types'
 
 export interface ItemState {
   itemList: IItem[]
   status: Status
+  filterParams: FilterParams
+  pagination: IPagination
 }
 
 export const initialState: ItemState = {
   itemList: [],
   status: Status.idle,
+  filterParams: { _limit: 16 },
+  pagination: {},
 }
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -46,6 +50,7 @@ export const itemSlice = createSlice({
       })
       .addCase(getItemWithParams.fulfilled, (state, action) => {
         state.status = Status.idle
+        state.pagination = jsonServerUtils.getPaginationFromsHeadersParams(action.payload.headers)
         state.itemList = action.payload.data || []
       })
   },
