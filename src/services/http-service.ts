@@ -22,7 +22,10 @@ httpService.interceptors.request.use(
 )
 
 httpService.interceptors.response.use(
-  <T>(response: AxiosResponse): Promise<T> => Promise.resolve(response.data),
+  <T>(response: AxiosResponse): Promise<T> => {
+    //response type override for need usage headers
+    return Promise.resolve(response as typeof response.data)
+  },
   (error: AxiosError) => {
     let status = error?.response?.status || 0
     // axios timeout connection
