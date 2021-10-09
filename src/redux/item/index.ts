@@ -2,20 +2,20 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import httpService from '../../services/http-service'
 
 import { jsonServerUtils } from '../../helpers'
-import { IPagination, IItem, FilterParams, Status } from '../../types'
+import { IPagination, IItem, ItemFilterParams, Status } from '../../types'
 
 export interface ItemState {
   itemList: IItem[]
   status: Status
-  filterParams: FilterParams
+  filterParams: ItemFilterParams
   pagination: IPagination
 }
 
 export const initialState: ItemState = {
   itemList: [],
-  status: Status.idle,
-  filterParams: { _limit: 16 },
   pagination: {},
+  status: Status.idle,
+  filterParams: { _limit: 16, _page: 1 },
 }
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -26,18 +26,22 @@ export const initialState: ItemState = {
 
 export const getItemWithParams = createAsyncThunk(
   'item/getItemWithParams',
-  async (params?: FilterParams) => {
+  async (params?: ItemFilterParams) => {
     const response = await httpService.get<IItem[]>('/items', { params })
     // The value we return becomes the `fulfilled` action payload
     return response
   },
 )
 
-export const itemSlice = createSlice({
+const itemSlice = createSlice({
   name: 'item',
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
-  reducers: {},
+  reducers: {
+    setFilterParams: (state, action: { type: string; payload: ItemFilterParams }) => {
+      state.filterParams = action.payload
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getItemWithParams.pending, (state) => {
@@ -55,5 +59,7 @@ export const itemSlice = createSlice({
       })
   },
 })
+
+export const { setFilterParams } = itemSlice.actions
 
 export default itemSlice.reducer
