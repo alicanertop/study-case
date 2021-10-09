@@ -18,7 +18,7 @@ export const initialState: TagState = { tagList: [], status: Status.idle }
 export const getAllTags = createAsyncThunk('tag/getAll', async () => {
   const response = await httpService.get<[]>('/tags')
   // The value we return becomes the `fulfilled` action payload
-  return response as unknown as string[]
+  return response
 })
 
 export const tagSlice = createSlice({
@@ -38,7 +38,7 @@ export const tagSlice = createSlice({
       })
       .addCase(getAllTags.fulfilled, (state, action) => {
         state.status = Status.idle
-        state.tagList = action.payload || []
+        state.tagList = action.payload.data || []
       })
   },
 })

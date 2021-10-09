@@ -16,9 +16,9 @@ export const initialState: ItemTypeState = { itemTypeList: [], status: Status.id
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
 export const getAllItemTypes = createAsyncThunk('itemType/getAll', async () => {
-  const response = await httpService.get<[]>('/itemTypes')
+  const response = await httpService.get<string[]>('/itemTypes')
   // The value we return becomes the `fulfilled` action payload
-  return response as unknown as string[]
+  return response
 })
 
 export const tagSlice = createSlice({
@@ -38,7 +38,7 @@ export const tagSlice = createSlice({
       })
       .addCase(getAllItemTypes.fulfilled, (state, action) => {
         state.status = Status.idle
-        state.itemTypeList = action.payload || []
+        state.itemTypeList = action.payload.data || []
       })
   },
 })

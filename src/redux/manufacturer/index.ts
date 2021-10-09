@@ -19,7 +19,7 @@ export const initialState: ManufacturerState = { manufacturer: [], status: Statu
 export const getAllCompanies = createAsyncThunk('manufacturer/getAll', async () => {
   const response = await httpService.get<IManufacturer[]>('/companies')
   // The value we return becomes the `fulfilled` action payload
-  return response as unknown as IManufacturer[]
+  return response
 })
 
 export const manufacturerSlice = createSlice({
@@ -39,7 +39,7 @@ export const manufacturerSlice = createSlice({
       })
       .addCase(getAllCompanies.fulfilled, (state, action) => {
         state.status = Status.idle
-        state.manufacturer = action.payload || []
+        state.manufacturer = action.payload.data || []
       })
   },
 })

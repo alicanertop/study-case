@@ -23,9 +23,9 @@ export const initialState: ItemState = {
 export const getItemWithParams = createAsyncThunk(
   'item/getItemWithParams',
   async (params?: FilterParams) => {
-    const response = await httpService.get<[]>('/items', { params })
+    const response = await httpService.get<IItem[]>('/items', { params })
     // The value we return becomes the `fulfilled` action payload
-    return response as unknown as IItem[]
+    return response
   },
 )
 
@@ -46,7 +46,7 @@ export const itemSlice = createSlice({
       })
       .addCase(getItemWithParams.fulfilled, (state, action) => {
         state.status = Status.idle
-        state.itemList = action.payload || []
+        state.itemList = action.payload.data || []
       })
   },
 })
