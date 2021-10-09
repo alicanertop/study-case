@@ -15,9 +15,14 @@ export const initialState: TagState = { tagList: [], status: Status.idle }
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
-export const getAllTags = createAsyncThunk('tag/getAll', async () => {
-  const response = await httpService.get<[]>('/tags')
+export const getTags = createAsyncThunk('tag/getAll', async (name?: string) => {
+  const response = await httpService.get<string[]>('/tags')
   // The value we return becomes the `fulfilled` action payload
+  if (name) {
+    response.data = response.data.filter((v) =>
+      v.toLocaleLowerCase().includes(name.toLocaleLowerCase()),
+    )
+  }
   return response
 })
 
@@ -28,15 +33,15 @@ export const tagSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllTags.pending, (state) => {
+      .addCase(getTags.pending, (state) => {
         state.status = Status.loading
         state.tagList = []
       })
-      .addCase(getAllTags.rejected, (state) => {
+      .addCase(getTags.rejected, (state) => {
         state.status = Status.failed
         state.tagList = []
       })
-      .addCase(getAllTags.fulfilled, (state, action) => {
+      .addCase(getTags.fulfilled, (state, action) => {
         state.status = Status.idle
         state.tagList = action.payload.data || []
       })
