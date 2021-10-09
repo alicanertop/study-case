@@ -1,0 +1,33 @@
+$white100: #fafafa;
+$white200: #f4f4f4;
+$blue300: #1ea4ce;
+$blue500: #147594;
+$purple100: #f3f0fe;
+$purple500: rgba(93, 56, 192, 0.4);
+$gray200: #e0e0e0;
+$gray300: #dfdee2;
+$gray400: #c4c4c4;
+$black600: #525252;
+$grayscale700: #191919;
+$grayscale500: #697488;
+
+$colors: (
+  --white100 $white100,
+  --white200 $white200,
+  --blue300 $blue300,
+  --blue500 $blue500,
+  --purple100 $purple100,
+  --purple500 $purple500,
+  --gray200 $gray200,
+  --gray300 $gray300,
+  --gray400 $gray400,
+  --black600 $black600,
+  --grayscale700 $grayscale700,
+  --grayscale500 $grayscale500
+);
+
+:root {
+  @each $color, $value in $colors {
+    #{$color}: #{$value};
+  }
+}
