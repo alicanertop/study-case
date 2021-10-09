@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { Status } from '../types/Status'
+import { Status } from '../../types'
 import httpService from '../../services/http-service'
 
 export interface TagState {

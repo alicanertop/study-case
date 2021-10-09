@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { Status } from '../types/Status'
-import { IManufacturer } from '../types/Manufacturer'
+import { Status, IManufacturer } from '../../types'
+
 import httpService from '../../services/http-service'
 
 export interface ManufacturerState {
