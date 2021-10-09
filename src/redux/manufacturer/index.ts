@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { Status, IManufacturer } from '../../types'
+import { Status, IManufacturer, ManufacturerFilterParams } from '../../types'
 
 import httpService from '../../services/http-service'
 
@@ -16,11 +16,14 @@ export const initialState: ManufacturerState = { manufacturer: [], status: Statu
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
-export const getAllCompanies = createAsyncThunk('manufacturer/getAll', async () => {
-  const response = await httpService.get<IManufacturer[]>('/companies')
-  // The value we return becomes the `fulfilled` action payload
-  return response
-})
+export const getCompanies = createAsyncThunk(
+  'manufacturer/getAll',
+  async (params?: ManufacturerFilterParams) => {
+    const response = await httpService.get<IManufacturer[]>('/companies', { params })
+    // The value we return becomes the `fulfilled` action payload
+    return response
+  },
+)
 
 export const manufacturerSlice = createSlice({
   name: 'manufacturer',
@@ -29,15 +32,15 @@ export const manufacturerSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllCompanies.pending, (state) => {
+      .addCase(getCompanies.pending, (state) => {
         state.status = Status.loading
         state.manufacturer = []
       })
-      .addCase(getAllCompanies.rejected, (state) => {
+      .addCase(getCompanies.rejected, (state) => {
         state.status = Status.failed
         state.manufacturer = []
       })
-      .addCase(getAllCompanies.fulfilled, (state, action) => {
+      .addCase(getCompanies.fulfilled, (state, action) => {
         state.status = Status.idle
         state.manufacturer = action.payload.data || []
       })
