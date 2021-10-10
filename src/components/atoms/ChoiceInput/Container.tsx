@@ -14,6 +14,7 @@ const ChoiceInputStyle = {
     border: 'unset',
     'box-shadow': '0px 1px 7px var(--purple500)',
     'checked:background-color': 'var(--blue300)',
+    'checked:border-color': 'unset',
     'disabled:background-color': 'var(--grayscale500)',
     'disabled:border-color': '',
     'disabled:color': 'var(--grayscale500)',
@@ -21,9 +22,10 @@ const ChoiceInputStyle = {
   radio: {
     'margin-right': '12px',
     'border-radius': '17.5px',
-    border: '2px solid var(--blue300)',
+    border: '2px solid var(--grayscale500)',
     'box-shadow': 'unset',
     'checked:background-color': 'unset',
+    'checked:border-color': 'var(--blue300)',
     'disabled:background-color': 'var(--gray200)',
     'disabled:border-color': 'var(--grayscale500)',
     'disabled:color': 'var(--grayscale500)',
@@ -68,6 +70,7 @@ const Container = styled.div.attrs((props: IContainer) => ({ ...props }))`
   & .${(props) => `${props.componentName}__input:checked + .${props.componentName}__overlay`} {
     background: ${({ type }) => svg[type]} center no-repeat;
     background-color: ${({ type }) => ChoiceInputStyle[type]['checked:background-color']};
+    border-color: ${({ type }) => ChoiceInputStyle[type]['checked:border-color']};
   }
 
   &
