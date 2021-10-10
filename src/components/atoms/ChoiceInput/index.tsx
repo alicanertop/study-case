@@ -1,41 +1,42 @@
 import React from 'react'
 import classnames from 'classnames'
 
-import './checkbox.scss'
+import './choice-input.scss'
 
-interface ICheckbox
+export interface IBaseSelectableInput
   extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   containerProps?: React.HtmlHTMLAttributes<HTMLLabelElement>
   overlayProps?: React.HtmlHTMLAttributes<HTMLSpanElement>
   labelTextProps?: React.HtmlHTMLAttributes<HTMLSpanElement>
   labelText?: string
+  type: 'checkbox' | 'radio'
 }
 
-const Checkbox = React.forwardRef<HTMLInputElement, ICheckbox>(
+const BaseSelectableInput = React.forwardRef<HTMLInputElement, IBaseSelectableInput>(
   (
-    { containerProps, overlayProps, labelTextProps, labelText, id, ...rest },
+    { containerProps, overlayProps, labelTextProps, labelText, type, id, ...rest },
     ref: React.LegacyRef<HTMLInputElement> | undefined,
   ) => {
     return (
       <label
         {...containerProps}
         htmlFor={id}
-        className={classnames('checkbox__container', containerProps?.className)}>
+        className={classnames(`choice-input__container ${type}`, containerProps?.className)}>
         <input
           {...rest}
           ref={ref}
           id={id}
-          type="checkbox"
-          className={classnames('checkbox__input visually-hidden', rest?.className)}
+          type={type}
+          className={classnames(`choice-input__input visually-hidden ${type}`, rest?.className)}
         />
         <span
           {...overlayProps}
-          className={classnames('checkbox__overlay', overlayProps?.className)}
+          className={classnames(`choice-input__overlay ${type}`, overlayProps?.className)}
         />
         {labelText && (
           <span
             {...labelTextProps}
-            className={classnames('checkbox__label-text', labelTextProps?.className)}>
+            className={classnames(`choice-input__label-text ${type}`, labelTextProps?.className)}>
             {labelText}
           </span>
         )}
@@ -44,4 +45,4 @@ const Checkbox = React.forwardRef<HTMLInputElement, ICheckbox>(
   },
 )
 
-export default Checkbox
+export default BaseSelectableInput

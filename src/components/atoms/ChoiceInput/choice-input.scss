@@ -1,0 +1,75 @@
+$choiceInput: 'choice-input';
+.#{$choiceInput} {
+  $chekboxSVGBase64: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDEzIDkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xMS42NjY3IDFMNC4zMzMzMyA4LjMzMzMzTDEgNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K);
+  $radioSVGBase64: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iNyIgdmlld0JveD0iMCAwIDEwIDciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik05IDFMMy41IDZMMSAzLjcyNzI3IiBzdHJva2U9IiMxRUE0Q0UiIHN0cm9rZS13aWR0aD0iMS4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==);
+
+  &__container {
+    display: flex;
+    align-items: center;
+
+    .visually-hidden {
+      display: none;
+      pointer-events: none;
+    }
+  }
+
+  &__label-text {
+    cursor: pointer;
+    user-select: none;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.16px;
+  }
+
+  &__overlay {
+    $size: 22px;
+    width: $size;
+    height: $size;
+    background-color: #fff;
+  }
+
+  &__input:checked:disabled + &__overlay {
+    background-color: var(--grayscale500);
+  }
+
+  &__input:disabled ~ &__label-text {
+    cursor: default;
+    color: var(--grayscale500);
+  }
+
+  &__container.checkbox {
+    &:not(:last-child) {
+      margin-bottom: 18px;
+    }
+
+    .#{$choiceInput}__overlay {
+      margin-right: 8px;
+      border-radius: 2px;
+      box-shadow: 0px 1px 7px var(--purple500);
+    }
+
+    .#{$choiceInput}__input:checked + .#{$choiceInput}__overlay {
+      background: $chekboxSVGBase64 center no-repeat;
+      background-color: var(--blue300);
+    }
+  }
+
+  &__container.radio {
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+
+    .#{$choiceInput}__overlay {
+      margin-right: 12px;
+      border-radius: 17.5px;
+      border: 2px solid var(--blue300);
+    }
+
+    .#{$choiceInput}__input:checked + .#{$choiceInput}__overlay {
+      background: $radioSVGBase64 center no-repeat;
+    }
+  }
+}
