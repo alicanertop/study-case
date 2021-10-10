@@ -1,0 +1,45 @@
+.checkbox {
+  &__container {
+    &:not(:last-child) {
+      margin-bottom: 18px;
+    }
+
+    display: flex;
+    align-items: center;
+
+    .visually-hidden {
+      display: none;
+      pointer-events: none;
+    }
+  }
+
+  &__label-text {
+    user-select: none;
+    cursor: pointer;
+  }
+
+  &__overlay {
+    $size: 22px;
+    width: $size;
+    height: $size;
+    margin-right: 8px;
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: 0px 1px 7px var(--purple500);
+  }
+
+  &__input:checked + &__overlay {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDEzIDkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xMS42NjY3IDFMNC4zMzMzMyA4LjMzMzMzTDEgNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K)
+      center no-repeat;
+    background-color: var(--blue300);
+  }
+
+  &__input:checked:disabled + &__overlay {
+    background-color: var(--grayscale500);
+  }
+
+  &__input:disabled ~ &__label-text {
+    cursor: default;
+    color: var(--grayscale500);
+  }
+}
