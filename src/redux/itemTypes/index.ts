@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { Status } from '../../types'
+import { Status, IItemType, ItemTypeFilterParams } from '../../types'
 import httpService from '../../services/http-service'
 
 export interface ItemTypeState {
-  itemTypeList: string[]
+  itemTypeList: IItemType[]
   status: Status
 }
 
@@ -15,11 +15,14 @@ export const initialState: ItemTypeState = { itemTypeList: [], status: Status.id
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
-export const getAllItemTypes = createAsyncThunk('itemType/getAll', async () => {
-  const response = await httpService.get<string[]>('/itemTypes')
-  // The value we return becomes the `fulfilled` action payload
-  return response
-})
+export const getItemTypes = createAsyncThunk(
+  'itemType/getAll',
+  async (params: ItemTypeFilterParams) => {
+    const response = await httpService.get<IItemType[]>('/itemTypes', { params })
+    // The value we return becomes the `fulfilled` action payload
+    return response
+  },
+)
 
 export const tagSlice = createSlice({
   name: 'tag',
@@ -28,15 +31,15 @@ export const tagSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllItemTypes.pending, (state) => {
+      .addCase(getItemTypes.pending, (state) => {
         state.status = Status.loading
         state.itemTypeList = []
       })
-      .addCase(getAllItemTypes.rejected, (state) => {
+      .addCase(getItemTypes.rejected, (state) => {
         state.status = Status.failed
         state.itemTypeList = []
       })
-      .addCase(getAllItemTypes.fulfilled, (state, action) => {
+      .addCase(getItemTypes.fulfilled, (state, action) => {
         state.status = Status.idle
         state.itemTypeList = action.payload.data || []
       })

@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { Status } from '../../types'
+import { Status, ITagType, ITagFilterParams } from '../../types'
 import httpService from '../../services/http-service'
 
 export interface TagState {
-  tagList: string[]
+  tagList: ITagType[]
   status: Status
 }
 
@@ -15,14 +15,10 @@ export const initialState: TagState = { tagList: [], status: Status.idle }
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
-export const getTags = createAsyncThunk('tag/getAll', async (name?: string) => {
-  const response = await httpService.get<string[]>('/tags')
+export const getTags = createAsyncThunk('tag/getAll', async (params: ITagFilterParams) => {
+  const response = await httpService.get<ITagType[]>('/tags', { params })
   // The value we return becomes the `fulfilled` action payload
-  if (name) {
-    response.data = response.data.filter((v) =>
-      v.toLocaleLowerCase().includes(name.toLocaleLowerCase()),
-    )
-  }
+
   return response
 })
 
