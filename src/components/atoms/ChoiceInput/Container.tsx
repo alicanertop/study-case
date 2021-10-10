@@ -52,7 +52,6 @@ const Container = styled.div.attrs((props: IContainer) => ({ ...props }))`
     line-height: 18px;
     font-style: normal;
     font-weight: normal;
-    font-family: Open Sans;
     letter-spacing: 0.16px;
   }
 
