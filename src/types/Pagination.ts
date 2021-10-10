@@ -1,3 +1,8 @@
+export type ISort = {
+  _sort?: string
+  _order?: 'asc' | 'desc'
+}
+
 export type PaginationParams = {
   _limit?: number
   _page?: number

@@ -1,6 +1,3 @@
-import { PaginationParams } from './Pagination'
+import { PaginationParams, ISort } from './Pagination'
 
-export type BaseFilterParams = PaginationParams & {
-  _sort?: string
-  _order?: 'asc' | 'desc'
-}
+export type BaseFilterParams = PaginationParams & ISort

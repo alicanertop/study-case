@@ -9,6 +9,7 @@ export type IManufacturer = {
   zip: string
   account: number
   contact: string
+  itemCount: number
 }
 
 export type ManufacturerFilterParams = BaseFilterParams & {
