@@ -57,28 +57,24 @@ function ProductList(props: Props): ReactElement {
 
   return (
     <StyledDiv {...containerProps}>
+      {status == 'loading' && <Loading isFixed />}
+
       <p {...labelProps} className={classnames('product__label', labelProps?.className)}>
         Product
       </p>
       <ItemTypeFilter />
 
-      {status == 'loading' ? (
-        <Loading />
-      ) : (
-        <>
-          <div {...rest} className={classnames('product__content', rest?.className)}>
-            {itemList.map((item) => (
-              <ProductItem product={item} onAddClick={handleAddCart} />
-            ))}
-          </div>
-          <Pagination
-            {...pagination}
-            _page={filterParams._page}
-            onChange={handlePagination}
-            _limit={filterParams._limit}
-          />
-        </>
-      )}
+      <div {...rest} className={classnames('product__content', rest?.className)}>
+        {itemList.map((item) => (
+          <ProductItem product={item} onAddClick={handleAddCart} />
+        ))}
+      </div>
+      <Pagination
+        {...pagination}
+        _page={filterParams._page}
+        onChange={handlePagination}
+        _limit={filterParams._limit}
+      />
     </StyledDiv>
   )
 }
