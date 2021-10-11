@@ -1,9 +1,10 @@
 import React from 'react'
-
-import { Button } from '../../../components/atoms'
-import { IPagination, PaginationParams } from '../../../types'
+import classnames from 'classnames'
 import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs'
-import { CgChevronDoubleLeft, CgChevronDoubleRight } from 'react-icons/cg'
+
+import { IPagination, PaginationParams } from '../../../types'
+import { Button } from '../../../components/atoms'
+import { generatePaginatorPageList } from './helpers'
 
 import './pagination.scss'
 
@@ -11,60 +12,57 @@ interface Props extends IPagination, PaginationParams {
   onChange: (params: PaginationParams) => void
 }
 
-function Pagination({
-  onChange,
-  _page,
-  first,
-  last,
-  _limit,
-  next,
-  prev,
-  lastPage,
-  totalCount,
-}: Props) {
+function Pagination({ onChange, _page, first, last, _limit, next, prev }: Props) {
   const [currentPage, setCurrentPage] = React.useState(1)
 
   React.useEffect(() => {
     if (typeof _page !== 'undefined') setCurrentPage(_page)
   }, [_page])
 
-  console.log(currentPage, _limit, lastPage, totalCount)
+  const handleChange = (params: PaginationParams, isDisabled: boolean = false) => {
+    if (isDisabled) return
+
+    onChange?.(params)
+  }
+
+  const pageArray = React.useMemo(
+    () => generatePaginatorPageList({ currentPage, first, last }),
+    [currentPage],
+  )
 
   return (
     <div className="pagination">
-      <div
-        className="pagination-left-button__container"
-        onClick={() => (prev ? onChange?.(prev) : undefined)}>
-        <BsArrowLeftShort className="pagination-left-icon" />
-        <Button
-          scheme="ghost"
-          children="Prev"
-          style={{ width: 30, padding: 0 }}
-          className="pagination-left-button"
-        />
-      </div>
-
-      {first && (
-        <CgChevronDoubleLeft className="pagination-left-icon" onClick={() => onChange?.(first)} />
+      {prev && (
+        <div className="pagination-left-button__container" onClick={() => handleChange?.(prev)}>
+          <BsArrowLeftShort className="pagination-left-icon" />
+          <Button
+            scheme="ghost"
+            children="Prev"
+            style={{ width: 30, padding: 0 }}
+            className="pagination-left-button"
+          />
+        </div>
       )}
 
-      {currentPage}
+      {pageArray.map((p) => (
+        <span
+          className={classnames('pagination-item', { active: currentPage === Number(p.page) })}
+          onClick={() => handleChange?.({ _limit, _page: Number(p.page) }, p.disabled)}>
+          {p.page}
+        </span>
+      ))}
 
-      {last && (
-        <CgChevronDoubleRight className="pagination-right-icon" onClick={() => onChange?.(last)} />
+      {next && (
+        <div className="pagination-right-button__container" onClick={() => handleChange?.(next)}>
+          <Button
+            scheme="ghost"
+            children="Next"
+            style={{ width: 30, padding: 0 }}
+            className="pagination-right-button"
+          />
+          <BsArrowRightShort className="pagination-right-icon" />
+        </div>
       )}
-
-      <div
-        className="pagination-right-button__container"
-        onClick={() => (next ? onChange?.(next) : undefined)}>
-        <Button
-          scheme="ghost"
-          children="Next"
-          style={{ width: 30, padding: 0 }}
-          className="pagination-right-button"
-        />
-        <BsArrowRightShort className="pagination-right-icon" />
-      </div>
     </div>
   )
 }

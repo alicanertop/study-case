@@ -2,6 +2,14 @@
   display: flex;
   align-items: center;
 
+  &-left-button__container {
+    margin-right: 20px;
+  }
+
+  &-right-button__container {
+    margin-left: 20px;
+  }
+
   .pagination-left,
   .pagination-right {
     &-button {
@@ -9,7 +17,9 @@
       &__container {
         display: flex;
         cursor: pointer;
+        font-size: 14px;
         align-items: center;
+        color: var(--grayscale500);
         &:hover {
           color: var(--blue300);
         }
@@ -22,6 +32,20 @@
       &:hover {
         color: var(--blue300);
       }
+    }
+  }
+  &-item {
+    width: 32px;
+    height: 24px;
+    padding: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 2px;
+    color: var(--grayscale500);
+    &.active {
+      color: white;
+      background-color: var(--blue300);
     }
   }
 }
