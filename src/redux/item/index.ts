@@ -49,7 +49,7 @@ const itemSlice = createSlice({
     builder
       .addCase(getItemWithParams.pending, (state) => {
         state.status = Status.loading
-        state.itemList = []
+        // state.itemList = []
       })
       .addCase(getItemWithParams.rejected, (state) => {
         state.status = Status.failed
