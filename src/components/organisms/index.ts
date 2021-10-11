@@ -1,3 +1,5 @@
 export { default as Sorting } from './Sorting'
-export { default as BrandFilter } from './BrandFilter'
 export { default as TagFilter } from './TagFilter'
+export { default as ProductList } from './ProductList'
+export { default as BrandFilter } from './BrandFilter'
+export { default as ItemTypeFilter } from './ItemTypeFilter'
