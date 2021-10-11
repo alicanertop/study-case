@@ -2,7 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 import Container from './Container'
 
-export interface IBaseSelectableInput
+export interface IChoiceInput
   extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   containerProps?: typeof Container
   labelProps?: React.HtmlHTMLAttributes<HTMLLabelElement>
@@ -14,7 +14,7 @@ export interface IBaseSelectableInput
   componentName?: string
 }
 
-const BaseSelectableInput = React.forwardRef<HTMLInputElement, IBaseSelectableInput>(
+const ChoiceInput = React.forwardRef<HTMLInputElement, IChoiceInput>(
   (props, ref: React.LegacyRef<HTMLInputElement> | undefined) => {
     const {
       componentName = 'choice-input',
@@ -66,4 +66,4 @@ const BaseSelectableInput = React.forwardRef<HTMLInputElement, IBaseSelectableIn
   },
 )
 
-export default BaseSelectableInput
+export default ChoiceInput
