@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import { Button } from '../../../components/atoms'
 import { IItem } from '../../../types'
-import { itemReducer, useAppDispatch, useAppSelector } from '../../../redux'
 
 const StyledDiv = styled.div`
   position: relative;
@@ -26,6 +25,7 @@ const StyledDiv = styled.div`
       height: 92px;
     }
   }
+
   p {
     font-style: normal;
     font-size: 14px;
