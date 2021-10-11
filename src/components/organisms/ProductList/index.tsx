@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import classnames from 'classnames'
 import styled from 'styled-components'
 
-import { itemReducer, useAppDispatch, useAppSelector } from '../../../redux'
+import { basketReducer, itemReducer, useAppDispatch, useAppSelector } from '../../../redux'
 import { Loading } from '../../../components/atoms'
 import { Pagination } from '../../../components/molecues'
 import ItemTypeFilter from '../ItemTypeFilter'
@@ -10,8 +10,7 @@ import ProductItem from './ProductItem'
 import { IItem, PaginationParams } from '../../../types'
 
 const StyledDiv = styled.div`
-  max-width: 688px;
-  min-width: 688px;
+  max-width: 608px;
 
   & .product__label {
     margin: 0;
@@ -44,17 +43,17 @@ function ProductList(props: Props): ReactElement {
   const dispatch = useAppDispatch()
   const { filterParams, pagination, itemList, status } = useAppSelector(({ item }) => item)
 
-  React.useEffect(() => {
-    dispatch(itemReducer.getItemWithParams({ ...filterParams }))
-  }, [filterParams])
-
-  const handleAddCart = (product: IItem) => {
-    console.log(product)
+  const handleAddCart = (item: IItem) => {
+    dispatch(basketReducer.basketSlice.actions.add(item))
   }
 
   const handlePagination = (params: PaginationParams) => {
     dispatch(itemReducer.setFilterParams({ ...params }))
   }
+
+  React.useEffect(() => {
+    dispatch(itemReducer.getItemWithParams({ ...filterParams }))
+  }, [filterParams])
 
   return (
     <StyledDiv {...containerProps}>

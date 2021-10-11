@@ -9,7 +9,7 @@ const StyledDiv = styled.div`
   position: relative;
   max-width: 124px;
   min-height: 255px;
-  margin: 20px 24px;
+  margin: 20px 12px;
 
   & .product-item-image__container {
     width: 124px;
