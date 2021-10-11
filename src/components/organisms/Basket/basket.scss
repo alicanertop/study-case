@@ -1,20 +1,24 @@
 .basket {
-  width: 129px;
-  height: 76.64px;
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--blue500);
   right: 104px;
+  position: absolute;
+  background-color: var(--blue500);
 
-  .shop-icon {
+  &__showroom {
+    cursor: pointer;
+    width: 129px;
+    height: 76.64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-shop-icon {
     width: 24px;
     height: 24px;
     color: white;
   }
 
-  &__text {
+  &-text {
     margin-left: 8px;
     font-style: normal;
     font-weight: 600;
@@ -25,23 +29,55 @@
     color: #ffffff;
   }
 
-  &.active {
+  &__content {
+    position: relative;
+    opacity: 0;
+    pointer-events: none;
+
     .basket__list {
+      transition: 1s top;
+      border: 8px solid var(--blue300);
+      border-radius: 2px;
+      right: 0;
+      top: 0;
+      position: absolute;
       display: flex;
+      flex-direction: column;
+      z-index: 2;
     }
   }
 
-  &__content {
-    position: relative;
+  &.active {
+    .basket__content {
+      opacity: 1;
+      pointer-events: unset;
 
-    .basket__list {
+      .basket__list {
+        top: 49px;
+      }
+    }
+  }
+
+  &-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 22px;
+    width: 236px;
+  }
+
+  &-button__container {
+    display: flex;
+    justify-content: flex-end;
+    background-color: white;
+
+    .basket-button {
       border-radius: 2px;
-      border: 8px solid var(--blue300);
-      display: none;
-      right: -25px;
-      top: 40px;
-      position: absolute;
-      // display: ;
+      width: 92px;
+      height: 51.1px;
+      margin: 24px;
+      border: 2px solid var(--blue300);
     }
   }
 }

@@ -1,14 +1,17 @@
-import React from 'react'
-import { AiFillShopping } from 'react-icons/ai'
 import styled from 'styled-components'
+import { IBasketItem } from '../../../redux/basket'
+import { IItem } from '../../../types'
 
 const StyledDiv = styled.div`
   overflow: hidden;
+  background-color: white;
 
   .container {
     display: flex;
-    width: 280px;
-    margin: 22px;
+    width: 236px;
+    margin: 22px 22px 0 22px;
+    padding: 0 0 22px 0;
+    border-bottom: 1px solid var(--white200);
   }
 
   .item-info {
@@ -31,13 +34,16 @@ const StyledDiv = styled.div`
     align-items: center;
     span {
       margin: 0;
-      height: 32px;
       width: 32px;
+      height: 32px;
+      cursor: pointer;
       font-size: 24px;
       text-align: center;
       color: var(--blue300);
     }
+
     .actions-count {
+      cursor: unset;
       padding: 0;
       width: 32px;
       height: 32px;
@@ -54,25 +60,29 @@ const StyledDiv = styled.div`
 `
 
 type IProps = {
-  showDivider?: boolean
+  onRemove: (item: IItem) => void
+  onAdd: (item: IItem) => void
+  item: IBasketItem
 }
 
-function BasketItem({ showDivider }: IProps) {
+function BasketItem({ onRemove, onAdd, item }: IProps) {
   return (
     <StyledDiv>
       <div className="container">
         <div className="item-info">
-          <span className="item-info-name">Example Product</span>
-          <span className="item-info-price">₺14,99</span>
+          <span className="item-info-name">{item.name}</span>
+          <span className="item-info-price">₺{item.totalPrice}</span>
         </div>
         <div className="actions">
-          <span className="actions-minus">-</span>
-          <span className="actions-count">1</span>
-          <span className="actions-plus">+</span>
+          <span className="actions-minus" onClick={() => onRemove(item)}>
+            -
+          </span>
+          <span className="actions-count">{item.count}</span>
+          <span className="actions-plus" onClick={() => onAdd(item)}>
+            +
+          </span>
         </div>
       </div>
-
-      {showDivider && <div className="divider" />}
     </StyledDiv>
   )
 }
