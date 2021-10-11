@@ -1,3 +1,4 @@
+export { default as Basket } from './Basket'
 export { default as Sorting } from './Sorting'
 export { default as TagFilter } from './TagFilter'
 export { default as ProductList } from './ProductList'
