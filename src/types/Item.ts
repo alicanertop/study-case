@@ -1,6 +1,7 @@
 import { BaseFilterParams } from './BaseFilterParams'
 
 export type IItem = {
+  id: string
   tags: string[]
   price: number
   name: string

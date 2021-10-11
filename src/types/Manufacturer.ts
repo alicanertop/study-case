@@ -1,6 +1,7 @@
 import { BaseFilterParams } from './BaseFilterParams'
 
 export type IManufacturer = {
+  id: string
   slug: string
   name: string
   address: string
