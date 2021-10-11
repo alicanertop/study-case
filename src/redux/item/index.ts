@@ -39,7 +39,10 @@ const itemSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     setFilterParams: (state, action: { type: string; payload: ItemFilterParams }) => {
-      state.filterParams = action.payload
+      state.filterParams = {
+        ...state.filterParams,
+        ...action.payload,
+      }
     },
   },
   extraReducers: (builder) => {
