@@ -13,6 +13,5 @@ export type IPagination = {
   prev?: PaginationParams
   next?: PaginationParams
   last?: PaginationParams
-  lastPage?: number
   totalCount?: number
 }
