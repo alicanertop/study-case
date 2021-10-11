@@ -4,9 +4,10 @@ import styled from 'styled-components'
 
 import { itemReducer, useAppDispatch, useAppSelector } from '../../../redux'
 import { Loading } from '../../../components/atoms'
+import { Pagination } from '../../../components/molecues'
 import ItemTypeFilter from '../ItemTypeFilter'
 import ProductItem from './ProductItem'
-import { IItem } from '../../../types'
+import { IItem, PaginationParams } from '../../../types'
 
 const StyledDiv = styled.div`
   max-width: 688px;
@@ -23,8 +24,8 @@ const StyledDiv = styled.div`
 
   & .product__content {
     display: flex;
-
     flex-wrap: wrap;
+    margin-bottom: 32px;
     background-color: white;
   }
 `
@@ -41,7 +42,7 @@ function ProductList(props: Props): ReactElement {
   const { label, labelProps, containerProps, ...rest } = props
 
   const dispatch = useAppDispatch()
-  const { filterParams, itemList, status } = useAppSelector(({ item }) => item)
+  const { filterParams, pagination, itemList, status } = useAppSelector(({ item }) => item)
 
   React.useEffect(() => {
     dispatch(itemReducer.getItemWithParams({ ...filterParams }))
@@ -49,6 +50,10 @@ function ProductList(props: Props): ReactElement {
 
   const handleAddCart = (product: IItem) => {
     console.log(product)
+  }
+
+  const handlePagination = (params: PaginationParams) => {
+    dispatch(itemReducer.setFilterParams({ ...params }))
   }
 
   return (
@@ -67,6 +72,12 @@ function ProductList(props: Props): ReactElement {
               <ProductItem product={item} onAddClick={handleAddCart} />
             ))}
           </div>
+          <Pagination
+            {...pagination}
+            _page={filterParams._page}
+            onChange={handlePagination}
+            _limit={filterParams._limit}
+          />
         </>
       )}
     </StyledDiv>
