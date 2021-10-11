@@ -23,6 +23,7 @@ const Button = styled.button.attrs(({ scheme = 'primary', ...props }: IButtonPro
   width: 100%;
   height: 30px;
   border: none;
+  cursor: pointer;
   font-size: 13px;
   line-height: 18px;
   padding: 6px 16px;
