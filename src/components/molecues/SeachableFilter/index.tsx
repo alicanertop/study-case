@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { ChoiceInput, IChoiceInput, Input } from '../../atoms'
-import Spinner from '../../../assets/img/spinner.svg'
+import { ChoiceInput, IChoiceInput, Input, Loading } from '../../atoms'
 import { FilterContainer } from '../../../containers'
 import { Status } from '../../../types'
 
@@ -16,14 +15,6 @@ const Content = styled.div`
   overflow: auto;
   z-index: 0;
 
-  .loading__container {
-    display: flex;
-    .loading {
-      width: 100px;
-      height: 100px;
-      margin: auto;
-    }
-  }
   .not-found {
     text-align: center;
     font-size: 14px;
@@ -93,9 +84,7 @@ function SeachableFilter({
 
       <Content>
         {status == 'loading' ? (
-          <div className="loading__container">
-            <img className="loading" src={Spinner} />
-          </div>
+          <Loading />
         ) : data.length ? (
           <>
             {type == 'checkbox' && (

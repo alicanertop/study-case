@@ -3,11 +3,15 @@ import classnames from 'classnames'
 import styled from 'styled-components'
 
 import { itemReducer, useAppDispatch, useAppSelector } from '../../../redux'
+import { Loading } from '../../../components/atoms'
 import ItemTypeFilter from '../ItemTypeFilter'
 import ProductItem from './ProductItem'
 import { IItem } from '../../../types'
 
 const StyledDiv = styled.div`
+  max-width: 688px;
+  min-width: 688px;
+
   & .product__label {
     margin: 0;
     font-style: normal;
@@ -19,7 +23,7 @@ const StyledDiv = styled.div`
 
   & .product__content {
     display: flex;
-    max-width: 688px;
+
     flex-wrap: wrap;
     background-color: white;
   }
@@ -37,7 +41,7 @@ function ProductList(props: Props): ReactElement {
   const { label, labelProps, containerProps, ...rest } = props
 
   const dispatch = useAppDispatch()
-  const { filterParams, itemList } = useAppSelector(({ item }) => item)
+  const { filterParams, itemList, status } = useAppSelector(({ item }) => item)
 
   React.useEffect(() => {
     dispatch(itemReducer.getItemWithParams({ ...filterParams }))
@@ -53,11 +57,18 @@ function ProductList(props: Props): ReactElement {
         Product
       </p>
       <ItemTypeFilter />
-      <div {...rest} className={classnames('product__content', rest?.className)}>
-        {itemList.map((item) => (
-          <ProductItem product={item} onAddClick={handleAddCart} />
-        ))}
-      </div>
+
+      {status == 'loading' ? (
+        <Loading />
+      ) : (
+        <>
+          <div {...rest} className={classnames('product__content', rest?.className)}>
+            {itemList.map((item) => (
+              <ProductItem product={item} onAddClick={handleAddCart} />
+            ))}
+          </div>
+        </>
+      )}
     </StyledDiv>
   )
 }
