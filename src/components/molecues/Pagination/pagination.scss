@@ -43,9 +43,14 @@
     text-align: center;
     border-radius: 2px;
     color: var(--grayscale500);
+
     &.active {
       color: white;
       background-color: var(--blue300);
+    }
+
+    &:hover {
+      color: var(--blue300);
     }
   }
 }
