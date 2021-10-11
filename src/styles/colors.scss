@@ -1,3 +1,4 @@
+$white050: #fefefe;
 $white100: #fafafa;
 $white200: #f4f4f4;
 $white300: #e5e5e5;
@@ -18,6 +19,7 @@ $grayscale700: #191919;
 $grayscale500: #697488;
 
 $colors: (
+  --white050 $white050,
   --white100 $white100,
   --white200 $white200,
   --white300 $white300,
