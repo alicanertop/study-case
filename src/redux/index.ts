@@ -3,6 +3,7 @@ import type { RootState, AppDispatch } from './store'
 
 export * as tagReducer from './tag'
 export * as itemReducer from './item'
+export * as basketReducer from './basket'
 export * as itemTypesReducer from './itemTypes'
 export * as manufacturerReducer from './manufacturer'
 
