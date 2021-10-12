@@ -55,13 +55,13 @@ function Basket() {
           {itemList.length ? (
             <div className="basket-button__container">
               <Button
-                scheme="primary"
+                variant="primary"
                 children="Clear"
                 className="basket-button"
                 onClick={handleClear}
               />
               <Button
-                scheme="ghost"
+                variant="ghost"
                 className="basket-button"
                 onClick={handleBuy}
                 children={totalText}

@@ -32,7 +32,7 @@ function ItemTypeFilter(props: Props): ReactElement {
       {buttonArr.map((butt, i) => (
         <Button
           children={butt.name}
-          scheme={filterParams.itemType == butt.itemType ? 'primary' : 'secondary'}
+          variant={filterParams.itemType == butt.itemType ? 'primary' : 'secondary'}
           style={{ width: '60px', marginRight: i ? 0 : 8 }}
           onClick={() => handleClick(butt.itemType)}
         />

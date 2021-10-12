@@ -25,10 +25,10 @@ const ButtonStyle = {
   },
 }
 
-type IButtonProps = { scheme?: 'primary' | 'secondary' | 'ghost' }
-const Button = styled.button.attrs(({ scheme = 'primary', ...props }: IButtonProps) => ({
+type IButtonProps = { variant?: 'primary' | 'secondary' | 'ghost' }
+const Button = styled.button.attrs(({ variant = 'primary', ...props }: IButtonProps) => ({
   ...props,
-  scheme,
+  variant,
 }))`
   width: 100%;
   height: 30px;
@@ -39,15 +39,15 @@ const Button = styled.button.attrs(({ scheme = 'primary', ...props }: IButtonPro
   padding: 6px 16px;
   text-align: center;
   border-radius: 2px;
-  color: ${({ scheme }) => ButtonStyle[scheme]['color']};
-  background-color: ${({ scheme }) => ButtonStyle[scheme]['background-color']};
+  color: ${({ variant }) => ButtonStyle[variant]['color']};
+  background-color: ${({ variant }) => ButtonStyle[variant]['background-color']};
 
   :disabled {
-    color: ${({ scheme }) => ButtonStyle[scheme]['disabled:color']};
-    background-color: ${({ scheme }) => ButtonStyle[scheme]['disabled:background-color']};
+    color: ${({ variant }) => ButtonStyle[variant]['disabled:color']};
+    background-color: ${({ variant }) => ButtonStyle[variant]['disabled:background-color']};
   }
   :hover {
-    color: ${({ scheme }) => ButtonStyle[scheme]['hover:color']};
+    color: ${({ variant }) => ButtonStyle[variant]['hover:color']};
   }
 `
 export default Button

@@ -36,7 +36,7 @@ function Pagination({ onChange, _page, first, last, _limit, next, prev }: Props)
         <div className="pagination-left-button__container" onClick={() => handleChange?.(prev)}>
           <BsArrowLeftShort className="pagination-left-icon" />
           <Button
-            scheme="ghost"
+            variant="ghost"
             children="Prev"
             style={{ width: 30, padding: 0 }}
             className="pagination-left-button"
@@ -55,7 +55,7 @@ function Pagination({ onChange, _page, first, last, _limit, next, prev }: Props)
       {next && (
         <div className="pagination-right-button__container" onClick={() => handleChange?.(next)}>
           <Button
-            scheme="ghost"
+            variant="ghost"
             children="Next"
             style={{ width: 30, padding: 0 }}
             className="pagination-right-button"
