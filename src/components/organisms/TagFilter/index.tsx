@@ -13,6 +13,7 @@ function TagFilter() {
   React.useEffect(() => {
     dispatch(
       itemReducer.setFilterParams({
+        _page: 1,
         tags_like: selectedItem.length ? selectedItem.map((i) => i.value).join(',') : undefined,
       }),
     )

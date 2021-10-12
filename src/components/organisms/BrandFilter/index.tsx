@@ -14,6 +14,7 @@ function Home() {
     dispatch(
       itemReducer.setFilterParams({
         manufacturer: selectedItem.length ? selectedItem.map((i) => i.value).join(',') : undefined,
+        _page: 1,
       }),
     )
   }, [selectedItem])

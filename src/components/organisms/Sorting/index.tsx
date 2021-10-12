@@ -36,7 +36,7 @@ function Sorting() {
   const filterParams = useAppSelector(({ item }) => item.filterParams)
 
   const onChange = (_: React.ChangeEvent<HTMLInputElement>, sort: ISort) =>
-    dispatch(itemReducer.setFilterParams({ ...filterParams, ...sort }))
+    dispatch(itemReducer.setFilterParams({ ...filterParams, ...sort, _page: 1 }))
 
   return (
     <FilterContainer label="Sorting">
