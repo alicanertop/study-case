@@ -47,6 +47,10 @@
     &.active {
       color: white;
       background-color: var(--blue300);
+      &:hover {
+        color: var(--gray200);
+        background-color: var(--blue500);
+      }
     }
 
     &:hover {
