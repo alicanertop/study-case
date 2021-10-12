@@ -16,7 +16,7 @@ function Pagination({ onChange, _page, first, last, _limit, next, prev }: Props)
   const [currentPage, setCurrentPage] = React.useState(1)
 
   React.useEffect(() => {
-    if (typeof _page !== 'undefined') setCurrentPage(_page)
+    if (typeof _page !== 'undefined') setCurrentPage(Number(_page))
   }, [_page])
 
   const handleChange = (params: PaginationParams, isDisabled: boolean = false) => {
