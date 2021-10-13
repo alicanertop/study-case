@@ -11,6 +11,8 @@ Project has [@reduxjs/toolkit](https://redux-toolkit.js.org/), [styled-component
 
 also [SCSS](https://sass-lang.com/) used on some styling ares like pagination and colors imported project with it
 
+No action was taken on any responsive. I think this was only POC purpose. Responsive can be done this page layout.
+
 # Components and Containers
 
 ## Component Atom
