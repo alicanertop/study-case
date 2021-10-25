@@ -15,5 +15,23 @@
     position: relative;
     max-width: $maxWidthLimit;
     min-width: $maxWidthLimit;
+
+    @media (max-width: 1200px) {
+      max-width: $lgWidthLimit;
+      min-width: $lgWidthLimit;
+    }
+
+    @media (max-width: 768px) {
+      max-width: $mdWidthLimit;
+      min-width: $mdWidthLimit;
+    }
+
+    @media (max-width: 530px) {
+      max-width: unset;
+      min-width: 100%;
+
+      justify-content: flex-start;
+      padding-left: 20px;
+    }
   }
 }
