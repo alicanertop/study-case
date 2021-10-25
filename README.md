@@ -4,7 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 [Github Page](https://alicanertop.github.io/study-case/) for docs
 
-[Demo Url](https://alican-ertop-study-case.herokuapp.com/)
+Demo urls
+[Json Server Heroku Url](https://alican-ertop-json-server.herokuapp.com/)
+[Pixel Perfect Heroku Url](https://alican-ertop-study-case.herokuapp.com)
+[Responsive Heroku Url](https://alican-ertop-res-study-case.herokuapp.com)
 
 ## Available Scripts
 
