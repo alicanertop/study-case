@@ -1,8 +1,19 @@
+@import '../../styles/variable.scss';
+
 .header {
   height: 76.64px;
   display: flex;
-  position: relative;
   align-items: center;
   justify-content: center;
   background-color: var(--blue300);
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    max-width: $maxWidthLimit;
+    min-width: $maxWidthLimit;
+  }
 }

@@ -6,8 +6,10 @@ import './header.scss'
 function Header() {
   return (
     <div className="header">
-      <img src={market} alt="logo" />
-      <Basket />
+      <div className="header__content">
+        <img src={market} alt="logo" />
+        <Basket />
+      </div>
     </div>
   )
 }

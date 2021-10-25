@@ -1,7 +1,11 @@
+@import '../../styles/variable.scss';
+
 .home-content {
   padding: 38.36px 104px;
   display: flex;
   position: relative;
+  max-width: $maxWidthLimit;
+  margin: auto;
 }
 
 .home-filter {
