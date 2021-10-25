@@ -11,3 +11,64 @@
 .home-filter {
   margin-right: 16px;
 }
+
+.button__container {
+  display: none;
+  width: 100%;
+  position: relative;
+
+  .button {
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: -40px;
+  }
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  &.active {
+    .button {
+      right: 0;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .home-content {
+    padding: 38.36px 52px;
+  }
+}
+
+@media (max-width: 768px) {
+  .button__container {
+    display: block;
+  }
+
+  .home-content {
+    padding: 0 28px;
+    margin: auto;
+    position: relative;
+  }
+
+  .home-product-list {
+    margin: auto;
+  }
+
+  .home-filter {
+    left: -320px;
+    z-index: 2;
+    position: fixed;
+    padding: 10px;
+    height: 100vh;
+    background: white;
+    width: 300px;
+    margin-right: 0;
+    transition: all 0.2s;
+
+    &.active {
+      left: 0;
+    }
+  }
+}
