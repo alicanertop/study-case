@@ -26,6 +26,15 @@ const StyledDiv = styled.div`
     flex-wrap: wrap;
     margin-bottom: 32px;
     background-color: white;
+    justify-content: center;
+  }
+  @media (max-width: 768px) {
+    & .product__label {
+      margin-top: 38px;
+    }
+    & .product__content {
+      max-width: 90vw;
+    }
   }
 `
 type IStyledDiv = typeof StyledDiv

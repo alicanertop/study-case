@@ -1,6 +1,7 @@
 .pagination {
   display: flex;
   align-items: center;
+  justify-content: center;
 
   &-left-button__container {
     margin-right: 20px;
@@ -55,6 +56,26 @@
 
     &:hover {
       color: var(--blue300);
+    }
+  }
+
+  @media (max-width: 768px) {
+    &-item {
+      width: 16px;
+      height: 12px;
+      font-size: 10px;
+    }
+
+    .pagination-left,
+    .pagination-right {
+      &-button {
+        width: 30px;
+        font-size: 12px;
+      }
+      &-icon {
+        width: 16px;
+        height: 16px;
+      }
     }
   }
 }

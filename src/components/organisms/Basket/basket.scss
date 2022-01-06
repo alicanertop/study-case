@@ -3,6 +3,10 @@
   position: absolute;
   background-color: var(--blue500);
 
+  @media (max-width: 530px) {
+    right: 10px;
+  }
+
   &__showroom {
     cursor: pointer;
     width: 129px;

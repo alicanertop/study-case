@@ -14,10 +14,7 @@ interface Props extends IPagination, PaginationParams {
 
 function Pagination({ onChange, _page, first, last, _limit, next, prev }: Props) {
   const [currentPage, setCurrentPage] = React.useState(1)
-
-  React.useEffect(() => {
-    if (typeof _page !== 'undefined') setCurrentPage(Number(_page))
-  }, [_page])
+  const [isBelow768, setIsBelow768] = React.useState(false)
 
   const handleChange = (params: PaginationParams, isDisabled: boolean = false) => {
     if (isDisabled) return
@@ -26,9 +23,23 @@ function Pagination({ onChange, _page, first, last, _limit, next, prev }: Props)
   }
 
   const pageArray = React.useMemo(
-    () => generatePaginatorPageList({ currentPage, first, last }),
-    [currentPage],
+    () => generatePaginatorPageList({ size: isBelow768 ? 1 : 4, currentPage, first, last }),
+    [currentPage, isBelow768],
   )
+
+  React.useEffect(() => {
+    if (typeof _page !== 'undefined') setCurrentPage(Number(_page))
+  }, [_page])
+
+  React.useEffect(() => {
+    const handler = (e: MediaQueryListEvent) => {
+      const { matches = false } = e
+      setIsBelow768(matches)
+    }
+
+    setIsBelow768(window.innerWidth < 768)
+    window.matchMedia('(max-width: 768px)').addEventListener('change', handler)
+  }, [])
 
   return (
     <div className="pagination">
