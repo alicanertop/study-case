@@ -62,6 +62,8 @@ const Container = styled.div.attrs((props: IContainer) => ({ ...props }))`
     background-color: #fff;
     width: ${({ size }) => size};
     height: ${({ size }) => size};
+    min-width: ${({ size }) => size};
+    min-height: ${({ size }) => size};
     margin-right: ${({ type }) => ChoiceInputStyle[type]['margin-right']};
     border-radius: ${({ type }) => ChoiceInputStyle[type]['border-radius']};
     border: ${({ type }) => ChoiceInputStyle[type]['border']};
